@@ -1,7 +1,7 @@
 import pandas as pd
 
 
-def query(filename, types, certainties=[0.9], columns=['dr7objid', 'ra', 'dec']):
+def query(filename, types, certainties=[0.9], columns=['ID', 'ra', 'dec']):
     """
     Basic query for Galaxy Zoo 2 data.
     """
@@ -38,6 +38,6 @@ def query(filename, types, certainties=[0.9], columns=['dr7objid', 'ra', 'dec'])
     return(dff)
 
 
-result = query("gz2_hart16", certainties=[0.95], types=["E"], columns=[
-               'dr7objid', 'ra', 'dec', 'gz2_class', 't01_smooth_or_features_a01_smooth_debiased', 't03_bar_a06_bar_debiased'])
-print(result)
+# result = query("gz2_hart16", certainties=[0.95], types=["E"], columns=[
+#                'dr7objid', 'ra', 'dec', 'gz2_class', 't01_smooth_or_features_a01_smooth_debiased', 't03_bar_a06_bar_debiased'])
+# print(result)

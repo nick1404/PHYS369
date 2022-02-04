@@ -1,7 +1,19 @@
 import matplotlib as mpl
 from matplotlib import pyplot as plt
 
-def plotstart(data, plot_type):
+# mpl.rc('text', usetex = True)
+# mpl.rcParams['lines.linewidth'] = 6
+# mpl.rcParams['axes.linewidth'] = 1.0
+# mpl.rcParams['xtick.major.size'] = 9
+# mpl.rcParams['xtick.minor.size'] = 5
+# mpl.rcParams['xtick.major.width'] = 1.9
+# mpl.rcParams['xtick.minor.width'] = 1.3
+# mpl.rcParams['ytick.major.size'] = 9
+# mpl.rcParams['ytick.minor.size'] = 4
+# mpl.rcParams['ytick.major.width'] = 1.9
+# mpl.rcParams['ytick.minor.width'] = 1.3
+
+def plotstart(data, plot_type, x_label='x', y_label='y', dataset=[]):
 
     if len(data[0]) > 3 or len(data[0]) < 2:
         print("Too much or not enough data!")
@@ -24,8 +36,8 @@ def plotstart(data, plot_type):
     plt.figure(dpi=200)
 
     ax = plt.axes(projection=proj)
-    ax.set_xlabel(data[0][0].name)
-    ax.set_ylabel(data[0][1].name)
+    ax.set_xlabel(x_label)
+    ax.set_ylabel(y_label)
     
     if proj == "3d":
         ax.set_zlabel(data[0][2][0])
@@ -33,11 +45,12 @@ def plotstart(data, plot_type):
     for x in range(len(data)):
 
         if plot_type == "line":
-            plt.plot(*data[x], colours[x], label="Data %s" % (x))
+            plt.plot(*data[x], colours[x], label=dataset[x])
             
         elif plot_type == "scatter":
             plt.scatter(*data[x], marker=".", c=colours[x],
-                        label="Data %s" % (x))
+                        label=dataset[x])
 
+    plt.tick_params(which='both',direction='in',right=True,top=True)
     plt.legend()
     plt.show()
