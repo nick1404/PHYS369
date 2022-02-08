@@ -13,7 +13,8 @@ from matplotlib import pyplot as plt
 # mpl.rcParams['ytick.major.width'] = 1.9
 # mpl.rcParams['ytick.minor.width'] = 1.3
 
-def plotstart(data, plot_type, x_label='x', y_label='y', dataset=[]):
+
+def plotstart(data, plot_type, x_label='x', y_label='y', dataset=[], x_err=None, y_err=None):
 
     if len(data[0]) > 3 or len(data[0]) < 2:
         print("Too much or not enough data!")
@@ -38,7 +39,7 @@ def plotstart(data, plot_type, x_label='x', y_label='y', dataset=[]):
     ax = plt.axes(projection=proj)
     ax.set_xlabel(x_label)
     ax.set_ylabel(y_label)
-    
+
     if proj == "3d":
         ax.set_zlabel(data[0][2][0])
 
@@ -51,6 +52,13 @@ def plotstart(data, plot_type, x_label='x', y_label='y', dataset=[]):
             plt.scatter(*data[x], marker=".", c=colours[x],
                         label=dataset[x])
 
-    plt.tick_params(which='both',direction='in',right=True,top=True)
+        # if x_err:
+        #     plt.errorbar(x=data[x][0], y=data[x][1],
+        #                     xerr=x_err[x], c=colours[x], linestyle=None)
+        # if y_err:
+        #     plt.errorbar(x=data[x][0], y=data[x][1],
+        #                     yerr=y_err[x], c=colours[x], linestyle=None)
+
+    plt.tick_params(which='both', direction='in', right=True, top=True)
     plt.legend()
     plt.show()
