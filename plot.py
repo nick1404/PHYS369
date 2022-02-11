@@ -1,5 +1,6 @@
 import matplotlib as mpl
 from matplotlib import pyplot as plt
+from matplotlib import markers
 
 # mpl.rc('text', usetex = True)
 # mpl.rcParams['lines.linewidth'] = 6
@@ -14,7 +15,7 @@ from matplotlib import pyplot as plt
 # mpl.rcParams['ytick.minor.width'] = 1.3
 
 
-def plotstart(data, plot_type, x_label='x', y_label='y', dataset=[], x_err=None, y_err=None):
+def plotstart(data, plot_type, x_label='x', y_label='y', dataset=None, x_err=None, y_err=None):
 
     if len(data[0]) > 3 or len(data[0]) < 2:
         print("Too much or not enough data!")
@@ -27,7 +28,7 @@ def plotstart(data, plot_type, x_label='x', y_label='y', dataset=[], x_err=None,
 
     colours = ["Red", "Blue", "Green", "Purple", "Orange",
                "Cyan", "Brown", "Olive", "Pink", "Gray", "Black"]
-
+    markers = [".", "s"]
     font = {'family': 'arial',
             'weight': 'normal',
             'size': 10}
@@ -49,7 +50,7 @@ def plotstart(data, plot_type, x_label='x', y_label='y', dataset=[], x_err=None,
             plt.plot(*data[x], colours[x], label=dataset[x])
             
         elif plot_type == "scatter":
-            plt.scatter(*data[x], marker=".", c=colours[x],
+            plt.scatter(*data[x], marker=markers[x], c="blue",
                         label=dataset[x])
 
         # if x_err:
@@ -60,5 +61,6 @@ def plotstart(data, plot_type, x_label='x', y_label='y', dataset=[], x_err=None,
         #                     yerr=y_err[x], c=colours[x], linestyle=None)
 
     plt.tick_params(which='both', direction='in', right=True, top=True)
+    plt.title("Mass > 11")
     plt.legend()
     plt.show()
